@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Gegenereerd op: 14 apr 2025 om 18:15
+-- Gegenereerd op: 06 mei 2025 om 18:30
 -- Serverversie: 5.7.44
 -- PHP-versie: 8.2.27
 
@@ -20,6 +20,28 @@ SET time_zone = "+00:00";
 --
 -- Database: `restaurant`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `gebruikers`
+--
+
+CREATE TABLE `gebruikers` (
+  `id` int(11) NOT NULL,
+  `naam` text NOT NULL,
+  `wachtwoord` text NOT NULL,
+  `is_admin` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `gebruikers`
+--
+
+INSERT INTO `gebruikers` (`id`, `naam`, `wachtwoord`, `is_admin`) VALUES
+(1, 'super-admin', 'wachtwoord', 1),
+(2, 'andy', 'bananasplit', 0),
+(4, 'admin', 'geheim', 1);
 
 -- --------------------------------------------------------
 
@@ -50,6 +72,12 @@ INSERT INTO `menu` (`id`, `naam`, `prijs`) VALUES
 --
 
 --
+-- Indexen voor tabel `gebruikers`
+--
+ALTER TABLE `gebruikers`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexen voor tabel `menu`
 --
 ALTER TABLE `menu`
@@ -58,6 +86,12 @@ ALTER TABLE `menu`
 --
 -- AUTO_INCREMENT voor geëxporteerde tabellen
 --
+
+--
+-- AUTO_INCREMENT voor een tabel `gebruikers`
+--
+ALTER TABLE `gebruikers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT voor een tabel `menu`

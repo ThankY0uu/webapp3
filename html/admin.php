@@ -1,13 +1,12 @@
 <?php
 session_start();
 
-// Only allow admins to access this page
+
 if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] != 1) {
     echo "Toegang geweigerd.";
     exit;
 }
 
-// DATABASE CONNECTION
 $host = "db";
 $dbname = "restaurant";
 $username = "root";
@@ -15,11 +14,9 @@ $password = "rootpassword";
 $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-// Delete user
 if (isset($_POST['verwijder'])) {
     $id = $_POST['id'];
 
-    // Check if the user exists
     $stmt = $conn->prepare("SELECT naam FROM gebruikers WHERE id = :id");
     $stmt->bindParam(':id', $id);
     $stmt->execute();
@@ -32,14 +29,12 @@ if (isset($_POST['verwijder'])) {
     }
 }
 
-// Add new user
 if (isset($_POST['toevoegen'])) {
     $naam = trim($_POST['nieuwe_naam']);
     $wachtwoord = trim($_POST['nieuw_wachtwoord']);
     $is_admin = isset($_POST['is_admin']) ? 1 : 0;
 
     if (!empty($naam) && !empty($wachtwoord)) {
-        // Hash the password for security
         $hashed_wachtwoord = password_hash($wachtwoord, PASSWORD_BCRYPT);
 
         $stmt = $conn->prepare("INSERT INTO gebruikers (naam, wachtwoord, is_admin) VALUES (:naam, :wachtwoord, :is_admin)");
@@ -48,7 +43,6 @@ if (isset($_POST['toevoegen'])) {
         $stmt->bindParam(':is_admin', $is_admin);
         $stmt->execute();
 
-        // Redirect to the same page to avoid form resubmission
         header("Location: " . $_SERVER['PHP_SELF']);
         exit;
     }
