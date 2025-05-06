@@ -7,7 +7,7 @@ error_reporting(E_ALL);
 $servername = "mysql_db";
 $username = "root";
 $password = "rootpassword";
-$feedback = ""; // Success or error messages
+$feedback = "";
 
 try {
     $conn = new PDO("mysql:host=$servername;dbname=restaurant", $username, $password);
@@ -18,32 +18,38 @@ try {
 
 // Toevoegen
 if (isset($_POST['add'])) {
-    $naam = $_POST['naam'];
-    $prijs = $_POST['prijs'];
+    $naam = htmlspecialchars(trim($_POST['naam']));
+    $prijs = filter_var($_POST['prijs'], FILTER_VALIDATE_FLOAT);
 
-    if (!empty($naam) && !empty($prijs)) {
+    if (!empty($naam) && $prijs !== false) {
         $sql = "INSERT INTO menu (naam, prijs) VALUES (:naam, :prijs)";
         $stmt = $conn->prepare($sql);
         if ($stmt->execute([':naam' => $naam, ':prijs' => $prijs])) {
-            $feedback = "succesvol toegevoegd";
+            $feedback = "Succesvol toegevoegd";
         } else {
-            $feedback = " niet geluuukt";
+            $feedback = "Toevoegen mislukt";
         }
+    } else {
+        $feedback = "Vul een geldige naam en prijs in.";
     }
 }
 
 // Bewerken
 if (isset($_POST['edit'])) {
     $id = $_POST['id'];
-    $naam = $_POST['naam'];
-    $prijs = $_POST['prijs'];
+    $naam = htmlspecialchars(trim($_POST['naam']));
+    $prijs = filter_var($_POST['prijs'], FILTER_VALIDATE_FLOAT);
 
-    $sql = "UPDATE menu SET naam = :naam, prijs = :prijs WHERE id = :id";
-    $stmt = $conn->prepare($sql);
-    if ($stmt->execute([':naam' => $naam, ':prijs' => $prijs, ':id' => $id])) {
-        $feedback = "bewerken gelukt:)";
+    if (!empty($naam) && $prijs !== false) {
+        $sql = "UPDATE menu SET naam = :naam, prijs = :prijs WHERE id = :id";
+        $stmt = $conn->prepare($sql);
+        if ($stmt->execute([':naam' => $naam, ':prijs' => $prijs, ':id' => $id])) {
+            $feedback = "Bewerken gelukt :)";
+        } else {
+            $feedback = "Bewerken mislukt :(";
+        }
     } else {
-        $feedback = "Bewerken mislukt:(";
+        $feedback = "Vul een geldige naam en prijs in.";
     }
 }
 
@@ -53,9 +59,9 @@ if (isset($_GET['delete'])) {
     $sql = "DELETE FROM menu WHERE id = :id";
     $stmt = $conn->prepare($sql);
     if ($stmt->execute([':id' => $id])) {
-        $feedback = "Gerecht is verwijderd:)";
+        $feedback = "Gerecht is verwijderd :)";
     } else {
-        $feedback = "Verwijderen mislukt:(";
+        $feedback = "Verwijderen mislukt :(";
     }
 }
 
@@ -64,12 +70,10 @@ $sql = "SELECT * FROM menu";
 $stmt = $conn->query($sql);
 $menu = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
-
 <!doctype html>
 <html lang="nl">
 <head>
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Menu</title>
@@ -79,26 +83,24 @@ $menu = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <header>
     <div class="header">
-
-        <div class="links"> <img class="mamfoto" src="fotos/mamlogo.png" alt="">
+        <div class="links">
+            <img class="mamfoto" src="fotos/mamlogo.png" alt="Logo">
             <a href="menu-beheer.php">
                 <p>Menu aanpassen</p>
             </a>
 
-
         </div>
         <div class="header-buttons">
-            <a href="login.php"> <img src="fotos/loginadmin.jpg" alt=""></a>
+            <a href="login.php"> <img src="fotos/loginadmin.jpg" alt="Login"></a>
         </div>
-
     </div>
 </header>
+
 <h1 class="titel-adminmenu">Menu Beheer</h1>
 
 <?php if (!empty($feedback)): ?>
-    <p class="feedback-admin" ><?= $feedback ?></p>
+    <p class="feedback-admin"><?= $feedback ?></p>
 <?php endif; ?>
-
 
 <h2 class="titel-adminmenu">Nieuw menu-item toevoegen</h2>
 <form method="POST" action="admin-menu-beheer.php">
@@ -114,13 +116,13 @@ $menu = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <h2 class="titel-adminmenu">Huidige Menu-items</h2>
 <input type="text" id="searchInput" placeholder="Zoek op naam..." class="search-menu-input">
 <div class="table-design">
-    <table border="1" cellpadding="8">
+    <table>
         <thead>
         <tr>
             <th>Naam</th>
             <th>Prijs</th>
             <th>Bewerk</th>
-            <th >Verwijder</th>
+            <th>Verwijder</th>
         </tr>
         </thead>
         <tbody>
@@ -166,4 +168,5 @@ $menu = $stmt->fetchAll(PDO::FETCH_ASSOC);
     });
 </script>
 </html>
+
 

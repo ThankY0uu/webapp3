@@ -5,19 +5,20 @@ $password = "rootpassword";
 
 try {
     $conn = new PDO("mysql:host=$servername;dbname=restaurant", $username, $password);
-    // set the PDO error mode to exception
+    // Set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch(PDOException $e) {
-    echo "Connection failed: " . $e->getMessage();
+    // You can log the error internally but display a user-friendly message
+    echo "Er is een probleem met de verbinding. Probeer het later opnieuw.";
+    exit; // Terminate further execution to avoid errors
 }
 
 $sql = "SELECT * FROM menu";
 $stmt = $conn->query($sql);
 $menu = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 
 <head>
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
@@ -25,7 +26,7 @@ $menu = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Menu</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -33,30 +34,32 @@ $menu = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <header>
     <div class="header">
 
-        <div class="links"> <img class="mamfoto" src="fotos/mamlogo.png" alt="">
+        <div class="links">
+            <img class="mamfoto" src="fotos/mamlogo.png" alt="MAM Street Food Logo">
             <a href="homepage.php">
                 <p>Home</p>
             </a>
             <a href="index.php">
                 <p>Menu</p>
             </a>
-
         </div>
         <div class="header-buttons">
-            <a href="login.php"> <img src="fotos/loginadmin.jpg" alt=""></a>
-
+            <a href="login.php">
+                <img src="fotos/loginadmin.jpg" alt="Login button">
+            </a>
         </div>
 
     </div>
-    
+
     <div class="header-foto">
-        <img src="fotos/background%20foto.png" alt=""></div>
+        <img src="fotos/background%20foto.png" alt="Restaurant Background Photo">
+    </div>
 </header>
 
-<input type="text" id="searchInput" placeholder="Zoek op naam..." class="search-menu-input">
+<input type="text" id="searchInput" placeholder="Zoek op naam..." class="search-menu-input" aria-label="Zoek menu-item op naam">
 
 <div>
-    <div class="menu-content" >
+    <div class="menu-content">
         <?php if (!empty($menu)): ?>
             <div class="menu-container">
                 <?php foreach ($menu as $item): ?>
@@ -72,6 +75,7 @@ $menu = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     </div>
 </div>
+
 <footer class="mam-footer">
     <div class="footer-content">
         <div class="footer-links">
@@ -97,8 +101,6 @@ $menu = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </footer>
 
 </body>
-</html>
-
 <script>
     const searchInput = document.getElementById('searchInput');
     const items = document.querySelectorAll('.menu-item');
@@ -116,3 +118,6 @@ $menu = $stmt->fetchAll(PDO::FETCH_ASSOC);
         });
     });
 </script>
+
+</html>
+
