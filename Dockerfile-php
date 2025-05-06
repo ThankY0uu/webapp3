@@ -1,0 +1,9 @@
+FROM php:8.0-apache
+
+RUN a2enmod rewrite
+
+# Zorg dat apache toegang heeft tot jouw mounted bestanden
+RUN chown -R www-data:www-data /var/www/html
+
+# Optioneel: activeer error logging
+COPY ./html /var/www/html

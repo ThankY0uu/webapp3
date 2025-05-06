@@ -1,0 +1,423 @@
+/* css die ik heb gebruikt voor alle pagina's */
+body {
+    margin: 0%;
+    padding: 0;
+    font-family: 'Montserrat';
+}
+a{
+    color: white;
+    text-decoration: none;
+
+}
+ul{
+    width: fit-content;
+}
+a:hover{
+    color: rgb(87, 65, 9);
+    text-decoration: underline;
+}
+/* alle header css*/
+.header{
+    width: auto;
+    height: 100px;
+    background-color: #114433;
+    display: flex;
+    justify-content: space-around;
+}
+.links{
+display: flex;
+align-items: center;
+justify-content: space-between;
+width: 30%;
+}
+.mamfoto{
+    width: 100px;
+    height: 100px;
+}
+.header-buttons img{
+width: 32px;
+height: 30px;
+}
+.header-buttons{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100px;
+}
+.header-foto img{
+    width: 100%;
+}
+/*  Menu Section */
+.menu-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+.menu-item {
+    border: 1px solid #000000;
+    border-radius: 16px;
+    padding: 20px;
+    width: 220px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(45, 74, 50, 0.15);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    color: #114433;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    margin: 10px;
+}
+.menu-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(45, 74, 50, 0.25);
+}
+.menu-item h3 {
+    margin-top: 0;
+    font-size: 1.2em;
+}
+.menu-item p {
+    margin: 8px 0 0;
+    font-weight: bold;
+}
+/* admin menu css */
+.search-menu-input {
+    padding: 0.6rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    max-width: 400px;
+    display: block;
+    background-color: #ffffff;
+    color: #2d4a32;
+}
+.search-menu-input {
+    padding: 0.6rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    margin: 1rem auto;
+    display: block;
+    background-color: #ffffff;
+    color: #2d4a32;
+    max-width: 400px;
+    width: 100%;
+}
+.table-design {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+table {
+    width: 90%;
+    max-width: 1000px;
+    background-color: #f8f4e6;
+    color: black;
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+}
+#verwijder-button{
+    color: black;
+}
+table th, table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+table th {
+    background-color: #2d4a32;
+    font-weight: bold;
+}
+table tr:nth-child(even) {
+    background-color: #f0ece0;
+}
+table tr:hover {
+    background-color: #e5e0cc;
+}
+form {
+    margin-top: 2rem;
+    text-align: center;
+}
+form label {
+    display: block;
+    margin: 0.5rem 0 0.2rem;
+}
+form input[type="text"],
+form input[type="number"] {
+    padding: 0.4rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    width: 200px;
+    background-color: #fff;
+    color: #2d4a32;
+}
+input[type="submit"] {
+    background-color: #2d4a32;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background-color 0.3s ease;
+}
+input[type="submit"]:hover {
+    background-color: #1f3523;
+}
+.feedback {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 1rem;
+}
+.titel-adminmenu{
+    justify-content: center;
+    display: flex;
+}
+.feedback-admin{
+    color: #1f3523;
+    font-weight: bold;
+    justify-content: center;
+    display: flex;
+}
+/* login css */
+#login-pagina-titel{
+    justify-content: center;
+    display: flex;
+}
+/* admin css */
+
+/*home page css*/
+
+.homepage-achtergrond {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.9);
+}
+
+.homepage-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 20px;
+    text-align: center;
+    color: white;
+    font-family: 'Mallanna';
+    padding: 40px;
+    max-width: 90%;
+    width: 1000px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.homepage-overlay h1 {
+    font-size: 5rem; /* or try 8vw for responsive scaling */
+    margin-bottom: 10px;
+    font-family: 'Segoe UI', sans-serif;
+    letter-spacing: 2px;
+}
+
+.homepage-overlay hr {
+    width: 350px;
+    height: 3px;
+    background-color: #936037;
+    border: none;
+    margin: 10px auto;
+}
+
+.homepage-overlay p {
+    font-size: 1.2rem;
+    margin-top: 10px;
+    opacity: 0.9;
+}
+
+#hp-titel {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.menu-section {
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding: 100px 0;
+    background-color: #fdf5e6;
+    overflow: hidden;
+}
+
+.menu-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    opacity: 0.5;
+}
+
+.menu-overlay {
+    position: relative;
+    z-index: 2;
+    background-color: rgba(24, 57, 47, 0.6); /* dark green tint */
+    padding: 60px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.menu-cards {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.menu-card {
+    background-color: #fff8e5;
+    padding: 30px 20px;
+    border-radius: 4px;
+    width: 250px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-align: center;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.menu-card h3 {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    color: #5e3e26;
+    font-weight: 600;
+    position: relative;
+}
+
+.menu-card .line {
+    display: block;
+    height: 3px;
+    width: 100px;
+    background-color: #936037;
+    margin: 0 auto 8px auto;
+}
+
+.menu-card p {
+    font-size: 0.9rem;
+    color: #444;
+    margin-top: 10px;
+}
+
+.menu-button {
+    background-color: #fff8e5;
+    color: #5e3e26;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 8px;
+    border: 1px solid #936037;
+    font-family: 'Segoe UI', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.menu-button:hover {
+    background-color: #936037;
+    color: white;
+}
+
+/* footer css*/
+.mam-footer {
+    background-color: #0f4a3a;
+    color: white;
+    padding: 40px 20px;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-evenly; /* Zorgt voor gelijke ruimte tussen de kolommen */
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.footer-left,
+.footer-links,
+.footer-right {
+    flex: 1;
+    min-width: 250px;
+    max-width: 300px;
+    text-align: left;
+}
+
+.footer-left h4,
+.footer-links h4,
+.footer-right h4 {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.footer-left p,
+.footer-links a {
+    margin: 5px 0;
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+.social-icons a {
+    color: white;
+    margin-right: 15px;
+    font-size: 1.2rem;
+    text-decoration: none;
+}
+@media (max-width: 390px) {
+    .header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .links, .header-buttons {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .mamfoto {
+        width: 60px;
+        height: 60px;
+    }
+
+    .titel-adminmenu {
+        font-size: 1.2rem;
+    }
+
+    .table-design {
+        width: 100%;
+        margin: 10px auto;
+    }
+
+    table th, table td {
+        font-size: 0.9rem;
+        padding: 8px;
+    }
+
+    form input[type="text"],
+    form input[type="number"],
+    input[type="submit"] {
+        width: 90%;
+        max-width: 350px;
+    }
+}
