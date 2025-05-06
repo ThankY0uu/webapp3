@@ -13,7 +13,7 @@ $username = "root";
 $password = "rootpassword";
 $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
+//verwijdern
 if (isset($_POST['verwijder'])) {
     $id = $_POST['id'];
 
@@ -28,7 +28,7 @@ if (isset($_POST['verwijder'])) {
         $stmt->execute();
     }
 }
-
+//toevoegen
 if (isset($_POST['toevoegen'])) {
     $naam = trim($_POST['nieuwe_naam']);
     $wachtwoord = trim($_POST['nieuw_wachtwoord']);
