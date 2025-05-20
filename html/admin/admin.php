@@ -1,19 +1,6 @@
 <?php
-session_start();
+require_once '../components/config.php';
 
-
-if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] != 1) {
-    echo "Toegang geweigerd.";
-    exit;
-}
-
-$host = "db";
-$dbname = "restaurant";
-$username = "root";
-$password = "rootpassword";
-$conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-//verwijdern
 if (isset($_POST['verwijder'])) {
     $id = $_POST['id'];
 
@@ -60,7 +47,7 @@ $gebruikers = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Menu</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <script>
         function confirmDelete() {
             return confirm("Weet je zeker dat je deze gebruiker wilt verwijderen?");
@@ -72,12 +59,12 @@ $gebruikers = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <header>
     <div class="header">
         <div class="links">
-            <img class="mamfoto" src="fotos/mamlogo.png" alt="MAM Street Food Logo">
+            <img class="mamfoto" src="../fotos/mamlogo.png" alt="MAM Street Food Logo">
             <a href="admin-menu-beheer.php"><p>Menu aanpassen</p></a>
             <a href="admin.php"><p>Gebruikersbeheer</p></a>
         </div>
         <div class="header-buttons">
-            <a href="login.php"><img src="fotos/loginadmin.jpg" alt="Login button"></a>
+            <a href="../inlog/login.php"><img src="../fotos/loginadmin.jpg" alt="Login button"></a>
         </div>
     </div>
 </header>

@@ -1,22 +1,12 @@
 <?php
-$servername = "mysql_db";
-$username = "root";
-$password = "rootpassword";
+require_once 'components/config.php';
 
-try {
-    $conn = new PDO("mysql:host=$servername;dbname=restaurant", $username, $password);
-    // Set the PDO error mode to exception
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch(PDOException $e) {
-    // You can log the error internally but display a user-friendly message
-    echo "Er is een probleem met de verbinding. Probeer het later opnieuw.";
-    exit; // Terminate further execution to avoid errors
-}
-
-$sql = "SELECT * FROM menu";
+$sql = "SELECT * FROM gerechten ORDER BY naam ASC";
 $stmt = $conn->query($sql);
 $menu = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
+
+
 <!DOCTYPE html>
 <html lang="nl">
 
@@ -31,50 +21,28 @@ $menu = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 
 <body>
-<header>
-    <div class="header">
-
-        <div class="links">
-            <img class="mamfoto" src="fotos/mamlogo.png" alt="MAM Street Food Logo">
-            <a href="homepage.php">
-                <p>Home</p>
-            </a>
-            <a href="index.php">
-                <p>Menu</p>
-            </a>
-        </div>
-        <div class="header-buttons">
-            <a href="login.php">
-                <img src="fotos/loginadmin.jpg" alt="Login button">
-            </a>
-        </div>
-
-    </div>
-
-    <div class="header-foto">
-        <img src="fotos/background%20foto.png" alt="Restaurant Background Photo">
-    </div>
+<header><?php require_once("components/header.php") ?>
 </header>
-
+<div class="header-foto">
+    <img src="fotos/background foto.png" alt="Restaurant Background Photo">
+</div>
 <input type="text" id="searchInput" placeholder="Zoek op naam..." class="search-menu-input" aria-label="Zoek menu-item op naam">
 
-<div>
-    <div class="menu-content">
-        <?php if (!empty($menu)): ?>
-            <div class="menu-container">
-                <?php foreach ($menu as $item): ?>
-                    <div class="menu-item">
-                        <h3><?= htmlspecialchars($item['naam']) ?></h3>
-                        <p>Prijs: € <?= number_format($item['prijs'], 2, ',', '.') ?></p>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-        <?php else: ?>
-            <p>Er staan momenteel geen producten op het menu.</p>
-        <?php endif; ?>
-
-    </div>
+<div class="menu-content">
+    <?php if (!empty($menu)): ?>
+        <div class="menu-container">
+            <?php foreach ($menu as $item): ?>
+                <div class="menu-item">
+                    <h3><?= htmlspecialchars($item['naam']) ?></h3>
+                    <p>Prijs: € <?= number_format($item['prijs'], 2, ',', '.') ?></p>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    <?php else: ?>
+        <p>Er staan momenteel geen producten op het menu.</p>
+    <?php endif; ?>
 </div>
+
 
 <footer class="mam-footer">
     <div class="footer-content">
@@ -86,7 +54,7 @@ $menu = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         <div class="footer-middel">
             <h4>Andere Links</h4>
-            <a href="homepage.php">Home</a><br>
+            <a href="public-paginas/homepage.php">Home</a><br>
             <a href="index.php">Menu</a>
         </div>
 
