@@ -8,27 +8,17 @@
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Mallanna' rel='stylesheet'>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 
     <title>MẮM Vietnamese Street Food</title>
 </head>
 
 <body>
-<header>
-    <div class="header">
-        <div class="links">
-            <img class="mamfoto" src="fotos/mamlogo.png" alt="MẮM Street Food Logo">
-            <a href="homepage.php"><p>Home</p></a>
-            <a href="index.php"><p>Menu</p></a>
-        </div>
-        <div class="header-buttons">
-            <a href="login.php"><img src="fotos/loginadmin.jpg" alt="Admin Login Button"></a>
-        </div>
-    </div>
+<header><?php require_once("../components/header.php") ?>
 </header>
 
 <div class="logo-homepage">
-    <img src="fotos/homepage%20background.png" alt="Homepage Background" class="homepage-achtergrond">
+    <img src="../fotos/homepage%20background.png" alt="Homepage Background" class="homepage-achtergrond">
     <div class="homepage-overlay">
         <div id="hp-titel">
             <h1>MẮM</h1>
@@ -39,7 +29,7 @@
 </div>
 
 <div class="menu-section">
-    <img src="fotos/background%20menu.jpg" alt="Menu Background" class="menu-background">
+    <img src="../fotos/background%20menu.jpg" alt="Menu Background" class="menu-background">
     <div class="menu-overlay">
         <div class="menu-cards">
             <div class="menu-card">
@@ -55,7 +45,7 @@
                 <p>Freshly cooked rice or noodles with fresh vegetables and love</p>
             </div>
         </div>
-        <a href="index.php" class="menu-button">Click for Menu</a>
+        <a href="../index.php" class="menu-button">Click for Menu</a>
     </div>
 </div>
 
@@ -70,7 +60,7 @@
         <div class="footer-middel">
             <h4>Andere Links</h4>
             <a href="homepage.php">Home</a><br>
-            <a href="index.php">Menu</a>
+            <a href="../index.php">Menu</a>
         </div>
 
         <div class="footer-rechts">

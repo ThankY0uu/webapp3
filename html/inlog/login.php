@@ -47,18 +47,18 @@ if (isset($_POST['login'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
 <header>
     <div class="header">
 
-        <div class="links"> <img class="mamfoto" src="fotos/mamlogo.png" alt="">
-            <a href="homepage.php">
+        <div class="links"> <img class="mamfoto" src="../fotos/mamlogo.png" alt="">
+            <a href="../public-paginas/homepage.php">
                 <p>Home</p>
             </a>
-            <a href="index.php">
+            <a href="../index.php">
                 <p>Menu</p>
             </a>
         </div>
@@ -66,7 +66,7 @@ if (isset($_POST['login'])) {
         </div>
 
     </div>
-    <div class="header-foto"><img src="fotos/background%20foto.png" alt=""></div>
+    <div class="header-foto"><img src="../fotos/background%20foto.png" alt=""></div>
 </header>
 <h1 id="login-pagina-titel">Login pagina</h1>
 <form action="login.php" method="post">
