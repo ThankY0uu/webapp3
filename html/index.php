@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <?php
 $servername = "mysql_db";
 $username = "root";
@@ -17,17 +18,21 @@ $sql = "SELECT * FROM menu";
 $stmt = $conn->query($sql);
 $menu = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
+=======
+>>>>>>> Stashed changes
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 
 <head>
-    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu</title>
+
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Mallanna' rel='stylesheet'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+
+    <title>MẮM Vietnamese Street Food</title>
 </head>
 
 <body>
@@ -55,6 +60,7 @@ $menu = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <img src="fotos/background%20foto.png" alt="Restaurant Background Photo">
     </div>
 </header>
+<<<<<<< Updated upstream
 
 <input type="text" id="searchInput" placeholder="Zoek op naam..." class="search-menu-input" aria-label="Zoek menu-item op naam">
 
@@ -73,6 +79,38 @@ $menu = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <p>Er staan momenteel geen producten op het menu.</p>
         <?php endif; ?>
 
+=======
+
+<div class="logo-homepage">
+    <img src="fotos/homepage background.png" alt="Homepage Background" class="homepage-achtergrond">
+    <div class="homepage-overlay">
+        <div id="hp-titel">
+            <h1>MẮM</h1>
+        </div>
+        <hr>
+        <p>Vietnamese Street Food</p>
+    </div>
+</div>
+
+<div class="menu-section">
+    <img src="fotos/background menu.jpg" alt="Menu Background" class="menu-background">
+    <div class="menu-overlay">
+        <div class="menu-cards">
+            <div class="menu-card">
+                <h3><span class="line"></span>PHỞ /BÚN BÒ HUẾ</h3>
+                <p>A delicious noodle soup with a homemade broth and lots of love</p>
+            </div>
+            <div class="menu-card">
+                <h3><span class="line"></span>BÁNH MÌ</h3>
+                <p>Delicious fresh homemade bread straight from the oven</p>
+            </div>
+            <div class="menu-card">
+                <h3><span class="line"></span>BÚN/CƠM</h3>
+                <p>Freshly cooked rice or noodles with fresh vegetables and love</p>
+            </div>
+        </div>
+        <a href="menu.php" class="menu-button">Click for Menu</a>
+>>>>>>> Stashed changes
     </div>
 </div>
 
@@ -86,7 +124,11 @@ $menu = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         <div class="footer-middel">
             <h4>Andere Links</h4>
+<<<<<<< Updated upstream
             <a href="homepage.php">Home</a><br>
+=======
+            <a href="menu.php">Home</a><br>
+>>>>>>> Stashed changes
             <a href="index.php">Menu</a>
         </div>
 
@@ -101,23 +143,5 @@ $menu = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </footer>
 
 </body>
-<script>
-    const searchInput = document.getElementById('searchInput');
-    const items = document.querySelectorAll('.menu-item');
-
-    searchInput.addEventListener('keyup', function () {
-        const searchTerm = this.value.toLowerCase();
-
-        items.forEach(item => {
-            const name = item.querySelector('h3').textContent.toLowerCase();
-            if (name.includes(searchTerm)) {
-                item.style.display = 'block';
-            } else {
-                item.style.display = 'none';
-            }
-        });
-    });
-</script>
 
 </html>
-

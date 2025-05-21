@@ -1,4 +1,8 @@
 /* css die ik heb gebruikt voor alle pagina's */
+* {
+    font-family: 'Montserrat', sans-serif !important;
+}
+
 body {
     margin: 0%;
     padding: 0;
@@ -64,7 +68,6 @@ height: 30px;
     box-shadow: 0 4px 8px rgba(45, 74, 50, 0.15);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     color: #114433;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
     margin: 10px;
 }
@@ -209,7 +212,6 @@ input[type="submit"]:hover {
     border-radius: 20px;
     text-align: center;
     color: white;
-    font-family: 'Mallanna';
     padding: 40px;
     max-width: 90%;
     width: 1000px;
@@ -324,7 +326,6 @@ input[type="submit"]:hover {
     font-weight: bold;
     border-radius: 8px;
     border: 1px solid #936037;
-    font-family: 'Segoe UI', sans-serif;
     transition: all 0.3s ease;
 }
 
@@ -338,7 +339,6 @@ input[type="submit"]:hover {
     background-color: #0f4a3a;
     color: white;
     padding: 40px 20px;
-    font-family: 'Segoe UI', sans-serif;
 }
 
 .footer-content {
@@ -384,6 +384,113 @@ input[type="submit"]:hover {
     font-size: 1.2rem;
     text-decoration: none;
 }
+
+/* css menu */
+.menu-header {
+    width: 100%;
+    height: 100px;
+    background-color: #114433;
+    display: flex;
+    justify-content: center;
+}
+
+.menu-header-container {
+    width: 90%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+.menu-header-links {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.menu-header-logo {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+
+.menu-header-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.menu-header-links a:hover {
+    color: #f1c40f;
+}
+
+.menu-header-buttons {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.menu-header-buttons img {
+    width: 32px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.menu-categorieën {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 40px 20px;
+}
+.categorie-blok {
+    background-color: #fff8e5; /* consistent met .menu-card */
+    border-radius: 16px;
+    overflow: hidden;
+    text-align: center;
+    width: 20%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    color: #114433; /* consistent donkergroen */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #e0dacb; /* lichte rand */
+}
+
+.categorie-blok img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-bottom: 1px solid #e0dacb;
+}
+
+.categorie-blok h3 {
+    margin: 15px 0;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #5e3e26;
+}
+
+.categorie-blok:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+.achtergrond-login {
+    width: 100%;
+    max-height: 200px;
+    overflow: hidden;
+}
+
+.achtergrond-login img {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
 @media (max-width: 390px) {
     .header {
         flex-direction: column;

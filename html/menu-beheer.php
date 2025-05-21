@@ -66,7 +66,7 @@ if (isset($_GET['delete'])) {
 }
 
 // Menu ophalen
-$sql = "SELECT * FROM menu";
+$sql = "SELECT * FROM gerechten";
 $stmt = $conn->query($sql);
 $menu = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
@@ -80,10 +80,10 @@ $menu = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
 <header>
     <div class="header">
         <div class="links">
+<<<<<<< Updated upstream:html/menu-beheer.php
             <img class="mamfoto" src="fotos/mamlogo.png" alt="Logo">
             <a href="menu-beheer.php">
                 <p>Menu aanpassen</p>
@@ -92,6 +92,12 @@ $menu = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
         <div class="header-buttons">
             <a href="login.php"> <img src="fotos/loginadmin.jpg" alt="Login"></a>
+=======
+            <img class="mamfoto" src="../fotos/mamlogo.png" alt="MAM Street Food Logo">
+        </div>
+        <div class="header-buttons">
+            <a href="../inlog/login.php"><img src="../fotos/loginadmin.jpg" alt="Login button"></a>
+>>>>>>> Stashed changes:html/admin/menu-beheer.php
         </div>
     </div>
 </header>

@@ -1,13 +1,7 @@
 <?php
 session_start();
 
-// DATABASECONNECTIE
-$host = "db"; // of 'localhost' als je geen Docker gebruikt
-$dbname = "restaurant";
-$username = "root";
-$password = "rootpassword";
-$conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+require_once '../components/config.php';
 
 // LOGIN AFHANDELING
 if (isset($_POST['login'])) {
@@ -26,9 +20,9 @@ if (isset($_POST['login'])) {
 
         // Redirect afhankelijk van adminstatus
         if ($_SESSION['is_admin'] == 1) {
-            header("Location: admin.php"); // Admin wordt doorgestuurd naar admin.php
+            header("Location: ../admin/admin.php"); // Admin wordt doorgestuurd naar admin.php
         } else {
-            header("Location: menu-beheer.php"); // Gebruiker wordt doorgestuurd naar admin-menu-beheer.php
+            header("Location:  ../admin/menu-beheer.php"); // Gebruiker wordt doorgestuurd naar admin-menu-beheer.php
         }
         exit;
     } else {
@@ -52,8 +46,9 @@ if (isset($_POST['login'])) {
 
 <body>
 <header>
-    <div class="header">
+    <?php require_once '../components/header.php'; ?>
 
+<<<<<<< Updated upstream:html/login.php
         <div class="links"> <img class="mamfoto" src="fotos/mamlogo.png" alt="">
             <a href="homepage.php">
                 <p>Home</p>
@@ -67,7 +62,11 @@ if (isset($_POST['login'])) {
 
     </div>
     <div class="header-foto"><img src="fotos/background%20foto.png" alt=""></div>
+=======
+>>>>>>> Stashed changes:html/inlog/login.php
 </header>
+<div class="achtergrond-login"><img src="../fotos/background%20menu.jpg" alt="achtergrond"></div>
+
 <h1 id="login-pagina-titel">Login pagina</h1>
 <form action="login.php" method="post">
 

@@ -1,4 +1,8 @@
 <?php
+<<<<<<< Updated upstream:html/admin.php
+=======
+require_once '../components/config.php';
+>>>>>>> Stashed changes:html/admin/admin.php
 session_start();
 
 
@@ -69,7 +73,9 @@ $gebruikers = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body>
 
+
 <header>
+<<<<<<< Updated upstream:html/admin.php
     <div class="header">
         <div class="links">
             <img class="mamfoto" src="fotos/mamlogo.png" alt="MAM Street Food Logo">
@@ -80,6 +86,9 @@ $gebruikers = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <a href="login.php"><img src="fotos/loginadmin.jpg" alt="Login button"></a>
         </div>
     </div>
+=======
+    <?php require_once "../components/admin-header.php"; ?>
+>>>>>>> Stashed changes:html/admin/admin.php
 </header>
 
 <main>

@@ -1,4 +1,5 @@
 <?php
+<<<<<<< Updated upstream:html/admin-menu-beheer.php
 // Debug mode: Show all errors
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -15,22 +16,31 @@ try {
 } catch(PDOException $e) {
     die("Verbinding mislukt: " . $e->getMessage());
 }
+=======
+require_once '../components/config.php';
+session_start();
+
+// Gerechtsoorten ophalen voor dropdown
+$soortenStmt = $conn->query("SELECT * FROM gerechtsoorten");
+$gerechtsoorten = $soortenStmt->fetchAll(PDO::FETCH_ASSOC);
+>>>>>>> Stashed changes:html/admin/admin-menu-beheer.php
 
 // Toevoegen
 if (isset($_POST['add'])) {
     $naam = htmlspecialchars(trim($_POST['naam']));
     $prijs = filter_var($_POST['prijs'], FILTER_VALIDATE_FLOAT);
+    $soort = (int)$_POST['gerechtsoort_id'];
 
-    if (!empty($naam) && $prijs !== false) {
-        $sql = "INSERT INTO menu (naam, prijs) VALUES (:naam, :prijs)";
+    if (!empty($naam) && $prijs !== false && $soort > 0) {
+        $sql = "INSERT INTO gerechten (naam, prijs, gerechtsoort_id) VALUES (:naam, :prijs, :gerechtsoort_id)";
         $stmt = $conn->prepare($sql);
-        if ($stmt->execute([':naam' => $naam, ':prijs' => $prijs])) {
+        if ($stmt->execute([':naam' => $naam, ':prijs' => $prijs, ':gerechtsoort_id' => $soort])) {
             $feedback = "Succesvol toegevoegd";
         } else {
             $feedback = "Toevoegen mislukt";
         }
     } else {
-        $feedback = "Vul een geldige naam en prijs in.";
+        $feedback = "Vul een geldige naam, prijs en gerechtsoort in.";
     }
 }
 
@@ -39,24 +49,25 @@ if (isset($_POST['edit'])) {
     $id = $_POST['id'];
     $naam = htmlspecialchars(trim($_POST['naam']));
     $prijs = filter_var($_POST['prijs'], FILTER_VALIDATE_FLOAT);
+    $soort = (int)$_POST['gerechtsoort_id'];
 
-    if (!empty($naam) && $prijs !== false) {
-        $sql = "UPDATE menu SET naam = :naam, prijs = :prijs WHERE id = :id";
+    if (!empty($naam) && $prijs !== false && $soort > 0) {
+        $sql = "UPDATE gerechten SET naam = :naam, prijs = :prijs, gerechtsoort_id = :gerechtsoort_id WHERE id = :id";
         $stmt = $conn->prepare($sql);
-        if ($stmt->execute([':naam' => $naam, ':prijs' => $prijs, ':id' => $id])) {
+        if ($stmt->execute([':naam' => $naam, ':prijs' => $prijs, ':gerechtsoort_id' => $soort, ':id' => $id])) {
             $feedback = "Bewerken gelukt :)";
         } else {
             $feedback = "Bewerken mislukt :(";
         }
     } else {
-        $feedback = "Vul een geldige naam en prijs in.";
+        $feedback = "Vul een geldige naam, prijs en gerechtsoort in.";
     }
 }
 
 // Verwijderen
 if (isset($_GET['delete'])) {
     $id = $_GET['delete'];
-    $sql = "DELETE FROM menu WHERE id = :id";
+    $sql = "DELETE FROM gerechten WHERE id = :id";
     $stmt = $conn->prepare($sql);
     if ($stmt->execute([':id' => $id])) {
         $feedback = "Gerecht is verwijderd :)";
@@ -66,22 +77,30 @@ if (isset($_GET['delete'])) {
 }
 
 // Menu ophalen
-$sql = "SELECT * FROM menu";
+$sql = "SELECT * FROM gerechten";
 $stmt = $conn->query($sql);
 $menu = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
+
 <!doctype html>
 <html lang="nl">
 <head>
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< Updated upstream:html/admin-menu-beheer.php
     <title>Admin Menu</title>
     <link rel="stylesheet" href="css/style.css">
+=======
+    <title>admin menu</title>
+    <link rel="stylesheet" href="../css/style.css">
+>>>>>>> Stashed changes:html/admin/admin-menu-beheer.php
 </head>
 <body>
 
 <header>
+<<<<<<< Updated upstream:html/admin-menu-beheer.php
     <div class="header">
         <div class="links">
             <img class="mamfoto" src="fotos/mamlogo.png" alt="Logo">
@@ -96,33 +115,45 @@ $menu = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <a href="login.php"> <img src="fotos/loginadmin.jpg" alt="Login"></a>
         </div>
     </div>
+=======
+    <?php require_once "../components/admin-header.php"; ?>
+>>>>>>> Stashed changes:html/admin/admin-menu-beheer.php
 </header>
-
 <h1 class="titel-adminmenu">Menu Beheer</h1>
 
 <?php if (!empty($feedback)): ?>
     <p class="feedback-admin"><?= $feedback ?></p>
 <?php endif; ?>
 
-<h2 class="titel-adminmenu">Nieuw menu-item toevoegen</h2>
-<form method="POST" action="admin-menu-beheer.php">
+<h2 class="titel-adminmenu">Nieuw gerecht toevoegen</h2>
+<form method="POST" action="">
     <label for="naam">Naam:</label>
-    <input type="text" name="naam" id="naam" required>
+    <input type="text" name="naam" required>
 
     <label for="prijs">Prijs (€):</label>
-    <input type="number" name="prijs" id="prijs" step="0.01" required>
+    <input type="number" name="prijs" step="0.01" required>
 
-    <input type="submit" name="add" value="Voeg toe">
+    <label for="gerechtsoort_id">Gerechtsoort:</label>
+    <select name="gerechtsoort_id" required>
+        <option value="">-- Kies soort --</option>
+        <?php foreach ($gerechtsoorten as $soort): ?>
+            <option value="<?= $soort['id'] ?>"><?= htmlspecialchars($soort['naam']) ?></option>
+        <?php endforeach; ?>
+    </select>
+
+    <input type="submit" name="add" value="Toevoegen">
 </form>
 
-<h2 class="titel-adminmenu">Huidige Menu-items</h2>
+<h2 class="titel-adminmenu">Bestaande gerechten</h2>
 <input type="text" id="searchInput" placeholder="Zoek op naam..." class="search-menu-input">
+
 <div class="table-design">
     <table>
         <thead>
         <tr>
             <th>Naam</th>
             <th>Prijs</th>
+            <th>Soort</th>
             <th>Bewerk</th>
             <th>Verwijder</th>
         </tr>
@@ -132,16 +163,24 @@ $menu = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <tr>
                 <td><?= htmlspecialchars($item['naam']) ?></td>
                 <td>&euro; <?= number_format($item['prijs'], 2, ',', '.') ?></td>
+                <td><?= htmlspecialchars($item['gerechtsoort_id']) ?></td>
                 <td>
-                    <form method="POST" action="admin-menu-beheer.php" style="display:inline;">
+                    <form method="POST" action="" style="display:inline;">
                         <input type="hidden" name="id" value="<?= $item['id'] ?>">
                         <input type="text" name="naam" value="<?= htmlspecialchars($item['naam']) ?>" required>
-                        <input type="number" name="prijs" value="<?= htmlspecialchars($item['prijs']) ?>" step="0.01" required>
+                        <input type="number" name="prijs" value="<?= $item['prijs'] ?>" step="0.01" required>
+                        <select name="gerechtsoort_id" required>
+                            <?php foreach ($gerechtsoorten as $soort): ?>
+                                <option value="<?= $soort['id'] ?>" <?= $item['gerechtsoort_id'] == $soort['id'] ? 'selected' : '' ?>>
+                                    <?= htmlspecialchars($soort['naam']) ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
                         <input type="submit" name="edit" value="Bewerk">
                     </form>
                 </td>
                 <td>
-                    <a id="verwijder-button" href="admin-menu-beheer.php?delete=<?= $item['id'] ?>" onclick="return confirm('Weet je zeker dat je dit item wilt verwijderen?');">Verwijder</a>
+                    <a id="verwijder-button" href="?delete=<?= $item['id'] ?>" onclick="return confirm('Weet je zeker dat je dit gerecht wilt verwijderen?');">Verwijder</a>
                 </td>
             </tr>
         <?php endforeach; ?>
@@ -149,26 +188,19 @@ $menu = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </table>
 </div>
 
-</body>
 <script>
     const searchInput = document.getElementById('searchInput');
     const rows = document.querySelectorAll('table tbody tr');
 
     searchInput.addEventListener('keyup', function () {
         const searchTerm = this.value.toLowerCase();
-
         rows.forEach(row => {
             const nameCell = row.querySelector('td:first-child');
             const name = nameCell.textContent.toLowerCase();
-
-            if (name.includes(searchTerm)) {
-                row.style.display = '';
-            } else {
-                row.style.display = 'none';
-            }
+            row.style.display = name.includes(searchTerm) ? '' : 'none';
         });
     });
 </script>
+
+</body>
 </html>
-
-
