@@ -1,8 +1,6 @@
 <?php
-<<<<<<< Updated upstream:html/admin.php
-=======
+
 require_once '../components/config.php';
->>>>>>> Stashed changes:html/admin/admin.php
 session_start();
 
 
@@ -64,7 +62,7 @@ $gebruikers = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Menu</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <script>
         function confirmDelete() {
             return confirm("Weet je zeker dat je deze gebruiker wilt verwijderen?");
@@ -75,20 +73,8 @@ $gebruikers = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
 <header>
-<<<<<<< Updated upstream:html/admin.php
-    <div class="header">
-        <div class="links">
-            <img class="mamfoto" src="fotos/mamlogo.png" alt="MAM Street Food Logo">
-            <a href="admin-menu-beheer.php"><p>Menu aanpassen</p></a>
-            <a href="admin.php"><p>Gebruikersbeheer</p></a>
-        </div>
-        <div class="header-buttons">
-            <a href="login.php"><img src="fotos/loginadmin.jpg" alt="Login button"></a>
-        </div>
-    </div>
-=======
+
     <?php require_once "../components/admin-header.php"; ?>
->>>>>>> Stashed changes:html/admin/admin.php
 </header>
 
 <main>

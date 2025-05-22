@@ -1,29 +1,10 @@
 <?php
-<<<<<<< Updated upstream:html/admin-menu-beheer.php
-// Debug mode: Show all errors
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-$servername = "mysql_db";
-$username = "root";
-$password = "rootpassword";
-$feedback = ""; // Success or error messages
-
-try {
-    $conn = new PDO("mysql:host=$servername;dbname=restaurant", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch(PDOException $e) {
-    die("Verbinding mislukt: " . $e->getMessage());
-}
-=======
 require_once '../components/config.php';
 session_start();
 
 // Gerechtsoorten ophalen voor dropdown
 $soortenStmt = $conn->query("SELECT * FROM gerechtsoorten");
 $gerechtsoorten = $soortenStmt->fetchAll(PDO::FETCH_ASSOC);
->>>>>>> Stashed changes:html/admin/admin-menu-beheer.php
 
 // Toevoegen
 if (isset($_POST['add'])) {
@@ -89,35 +70,16 @@ $menu = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< Updated upstream:html/admin-menu-beheer.php
     <title>Admin Menu</title>
     <link rel="stylesheet" href="css/style.css">
-=======
     <title>admin menu</title>
     <link rel="stylesheet" href="../css/style.css">
->>>>>>> Stashed changes:html/admin/admin-menu-beheer.php
 </head>
 <body>
 
 <header>
-<<<<<<< Updated upstream:html/admin-menu-beheer.php
-    <div class="header">
-        <div class="links">
-            <img class="mamfoto" src="fotos/mamlogo.png" alt="Logo">
-            <a href="admin-menu-beheer.php">
-                <p>Menu aanpassen</p>
-            </a>
-            <a href="admin.php">
-                <p>Gebruikersbeheer</p>
-            </a>
-        </div>
-        <div class="header-buttons">
-            <a href="login.php"> <img src="fotos/loginadmin.jpg" alt="Login"></a>
-        </div>
-    </div>
-=======
+
     <?php require_once "../components/admin-header.php"; ?>
->>>>>>> Stashed changes:html/admin/admin-menu-beheer.php
 </header>
 <h1 class="titel-adminmenu">Menu Beheer</h1>
 

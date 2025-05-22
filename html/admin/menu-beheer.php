@@ -1,21 +1,5 @@
 <?php
-// Debug mode: Show all errors
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-$servername = "mysql_db";
-$username = "root";
-$password = "rootpassword";
-$feedback = "";
-
-try {
-    $conn = new PDO("mysql:host=$servername;dbname=restaurant", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch(PDOException $e) {
-    die("Verbinding mislukt: " . $e->getMessage());
-}
-
+require_once "../components/config.php";
 // Toevoegen
 if (isset($_POST['add'])) {
     $naam = htmlspecialchars(trim($_POST['naam']));
@@ -77,27 +61,17 @@ $menu = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Menu</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 <header>
     <div class="header">
         <div class="links">
-<<<<<<< Updated upstream:html/menu-beheer.php
-            <img class="mamfoto" src="fotos/mamlogo.png" alt="Logo">
-            <a href="menu-beheer.php">
-                <p>Menu aanpassen</p>
-            </a>
+            <img class="mamfoto" src="../fotos/mamlogo.png" alt="Logo">
+        </div>
 
-        </div>
-        <div class="header-buttons">
-            <a href="login.php"> <img src="fotos/loginadmin.jpg" alt="Login"></a>
-=======
-            <img class="mamfoto" src="../fotos/mamlogo.png" alt="MAM Street Food Logo">
-        </div>
         <div class="header-buttons">
             <a href="../inlog/login.php"><img src="../fotos/loginadmin.jpg" alt="Login button"></a>
->>>>>>> Stashed changes:html/admin/menu-beheer.php
         </div>
     </div>
 </header>

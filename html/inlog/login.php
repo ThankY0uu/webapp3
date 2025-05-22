@@ -41,29 +41,13 @@ if (isset($_POST['login'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
 <header>
     <?php require_once '../components/header.php'; ?>
 
-<<<<<<< Updated upstream:html/login.php
-        <div class="links"> <img class="mamfoto" src="fotos/mamlogo.png" alt="">
-            <a href="homepage.php">
-                <p>Home</p>
-            </a>
-            <a href="index.php">
-                <p>Menu</p>
-            </a>
-        </div>
-        <div class="header-buttons">
-        </div>
-
-    </div>
-    <div class="header-foto"><img src="fotos/background%20foto.png" alt=""></div>
-=======
->>>>>>> Stashed changes:html/inlog/login.php
 </header>
 <div class="achtergrond-login"><img src="../fotos/background%20menu.jpg" alt="achtergrond"></div>
 
